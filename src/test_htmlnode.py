@@ -74,5 +74,20 @@ class TestHTMLNode(unittest.TestCase):
             "<a><p>Rhubarb</p><b></b></a>",
         )
 
+    def test_tag_value_error(self):
+        node = LeafNode("p", "Rhubarb")
+        first_parent = ParentNode(None, [node])
+        second_parent = ParentNode("b", [first_parent])
+        with self.assertRaises(ValueError):
+            second_parent.to_html()
+
+    def test_children_value_error(self):
+        node = LeafNode("p", "Rhubarb")
+        first_parent = ParentNode("a", None)
+        second_parent = ParentNode("b", [first_parent])
+        with self.assertRaises(ValueError):
+            second_parent.to_html()
+
+
 if __name__ == "__main__":
     unittest.main()
