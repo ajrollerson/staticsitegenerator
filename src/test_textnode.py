@@ -36,6 +36,18 @@ class TestTextNode(unittest.TestCase):
         self.assertEqual(html_node.tag, "i")
         self.assertEqual(html_node.value, "This is italic")
 
+    def test_bold(self):
+        node = TextNode("This is bold", TextType.BOLD)
+        html_node = text_node_to_html_node(node)
+        self.assertEqual(html_node.tag, "b")
+        self.assertEqual(html_node.value, "This is bold")
+
+    def test_code(self):
+        node = TextNode("This is code", TextType.CODE)
+        html_node = text_node_to_html_node(node)
+        self.assertEqual(html_node.tag, "code")
+        self.assertEqual(html_node.value, "This is code")
+
     def test_props(self):
         node = TextNode("Boop!", TextType.LINK, "https://google.com/awesome" )
         html_node = text_node_to_html_node(node)
