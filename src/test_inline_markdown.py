@@ -1,5 +1,5 @@
 import unittest
-from inline_markdown import split_nodes_delimiter, extract_markdown_images, extract_markdown_links
+from inline_markdown import split_nodes_delimiter, extract_markdown_images, extract_markdown_links, split_nodes_image, split_nodes_link
 from textnode import TextNode, TextType
 
 
@@ -73,7 +73,7 @@ class TestInlineMarkdown(unittest.TestCase):
 
     def test_extract_multiple_markdown_links(self):
         matches = extract_markdown_links(
-            "This is text with a link to [youtube](https://www.youtube.com) and [facebook](http://www.facebook.com)"
+            "This is text with two links to [youtube](https://www.youtube.com) and [facebook](http://www.facebook.com)"
         )
         self.assertListEqual([("youtube", "https://www.youtube.com"), ("facebook", "http://www.facebook.com")], matches)
 
@@ -82,3 +82,39 @@ class TestInlineMarkdown(unittest.TestCase):
             "This is just text"
         )
         self.assertListEqual([], matches)
+
+    def test_split_images(self):
+        node = TextNode(
+            "This is text with an ![image](https://i.imgur.com/zjjcJKZ.png) and another ![second image](https://i.imgur.com/3elNhQu.png)",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_image([node])
+        self.assertListEqual(
+            [
+                TextNode("This is text with an ", TextType.TEXT),
+                TextNode("image", TextType.IMAGE, "https://i.imgur.com/zjjcJKZ.png"),
+                TextNode(" and another ", TextType.TEXT),
+                TextNode(
+                    "second image", TextType.IMAGE, "https://i.imgur.com/3elNhQu.png"
+                ),
+            ],
+            new_nodes,
+        )
+
+    def test_split_links(self):
+        node = TextNode(
+            "This is text with two links to [youtube](https://www.youtube.com) and [facebook](http://www.facebook.com)",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_link([node])
+        self.assertListEqual(
+            [
+                TextNode("This is text with two links to ", TextType.TEXT),
+                TextNode("youtube", TextType.LINK, "https://www.youtube.com"),
+                TextNode(" and ", TextType.TEXT),
+                TextNode(
+                    "facebook", TextType.LINK, "http://www.facebook.com"
+                ),
+            ],
+            new_nodes,
+        )
