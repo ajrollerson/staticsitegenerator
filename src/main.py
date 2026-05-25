@@ -5,6 +5,7 @@ import shutil
 import sys
 
 basepath = sys.argv[1] if len(sys.argv) > 1 else "/"
+basepath = basepath if basepath.endswith("/") else basepath + "/"
 
 src = "static"
 dst = "docs"

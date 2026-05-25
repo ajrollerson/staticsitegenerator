@@ -25,8 +25,21 @@ Installation & Usage
 •	Clone the repository:
 
 git clone https://github.com/ajrollerson/staticsitegenerator
+
 cd staticsitegenerator
-python3 src/main.py
+
+• Local preview
+
+python3 src/main.py 
+
+Builds the site for local preview using root-relative paths.
+
+• GitHub Pages build
+
+python3 src/main.py "/staticsitegenerator/" 
+
+Required when building for GitHub Pages, which serves the site from a subdirectory.
+
 
 Design choices:
 
