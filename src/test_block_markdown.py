@@ -115,3 +115,6 @@ Truly.
             block = "1. First item.\n?. Second item.\n3. Third item."  
             result = block_to_block_type(block)
             self.assertEqual(result, BlockType.PARAGRAPH)
+
+if __name__ == "__main__":
+    unittest.main()

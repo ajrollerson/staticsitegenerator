@@ -294,3 +294,6 @@ class TestInlineMarkdown(unittest.TestCase):
         text = "This is NOT a H1 Header."
         with self.assertRaises(Exception):
             self.assertListEqual([extract_title(text)], ["This is NOT a H1 Header."])
+
+if __name__ == "__main__":
+    unittest.main()

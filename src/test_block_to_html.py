@@ -171,3 +171,6 @@ Just text
             html,
             "<div><h3><i>Important</i></h3><ol><li><b>First</b></li><li><i>Second</i></li></ol><ul><li>Third</li><li>Fourth</li></ul><blockquote>Thoughtful quote</blockquote><pre><code>**Some code** </code></pre><p>Just text</p></div>",
         )
+
+if __name__ == "__main__":
+    unittest.main()
