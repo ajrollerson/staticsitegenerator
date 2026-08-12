@@ -1,57 +1,73 @@
-Readme – Static Site Generator
+# Static Site Generator
+Static Site Generator is a Python application that converts Markdown documents into static HTML pages. The project began as a guided Boot.dev exercise before being extended with comprehensive automated testing and refactoring.
 
-This static site generator was built as part of a guided Boot.dev project and extended with a comprehensive test suite and additional engineering improvements.
+## Technical Highlights
+- Object-oriented HTML node architecture
+- Markdown parsing and transformation pipeline
+- Recursive HTML rendering
+- File-system-based build pipeline
+- Automated testing with edge-case coverage
+- Separation of parsing and rendering concerns
 
-Live demo: https://ajrollerson.github.io/staticsitegenerator/
+## Tech Stack
+- Python
+- unittest
 
-Key skills and knowledge developed: 
-•	Object-oriented design using node-based structures.
-•	File system manipulation and build pipeline design.
-•	Unit testing with edge-case coverage. 
-•	Markdown parsing and transformation pipelines.
+## Live Demo
+Demonstration of the static site:
 
-Key features:
+https://ajrollerson.github.io/staticsitegenerator/
 
-The base project implemented the following:
-•	Markdown-to-HTML conversion system.
-•	Recursive HTML node rendering engine.
-•	File-based build and output generation system.
-
-Personal additions:
-•	Expanded test suite to 78 tests covering edge cases and parser behaviour.
-
-Installation & Usage
-
-•	Clone the repository:
-
-git clone https://github.com/ajrollerson/staticsitegenerator
-
+## Quick Start
+### Clone the Repository
+```bash
+git clone https://github.com/ajrollerson/staticsitegenerator.git
 cd staticsitegenerator
+```
 
-• Local preview:
+### Build the Site
+```bash
+python3 src/main.py
+```
+Generates the static site in the `docs/` directory using root-relative paths.
 
-python3 src/main.py 
+### Build for GitHub Pages
+```bash
+python3 src/main.py "/staticsitegenerator/"
+```
 
-Builds the site for local preview using root-relative paths.
+Generates the site using `/staticsitegenerator/` as the root path, which is required because GitHub Pages serves the project from a repository subdirectory.
 
-• GitHub Pages build:
+### Run Tests
+```bash
+./test.sh
+```
 
-python3 src/main.py "/staticsitegenerator/" 
+## Key Features
+### Core Functionality
+- Convert Markdown documents into HTML
+- Parse block-level Markdown elements
+- Parse inline Markdown elements
+- Render HTML through recursive node structures
+- Generate static HTML files from source documents
 
-Required when building for GitHub Pages, which serves the site from a subdirectory.
+### Independent Extensions
+- Expanded the automated test suite to 78 tests
+- Added edge-case coverage for Markdown parsing behaviour
+- Added tests supporting future parser extensions
+- Refactored parsing logic to improve code organisation
 
+## Design Choices
+### Comprehensive Test Coverage
+The original project provided limited automated test coverage, so the test suite was expanded to cover parser behaviour and edge cases. This provides greater confidence in the existing implementation while creating a safety net for future changes to the parsing pipeline.
 
-Design choices:
+### Functional Parsing Logic
+Parts of `block_to_html.py` were implemented using a more functional style to reduce repetition and keep individual transformations concise. While this approach can make some operations more compact, it also increases cognitive load when compared with a more explicit implementation. This trade-off highlighted the importance of balancing brevity against maintainability when structuring parsing logic.
 
-•	A comprehensive test suite was implemented to validate expected behaviour and edge cases, and to support future extension of the parser. In the future, such tests will help support further extensions and guard against unexpected bugs that emerge.
+## Known Limitations
+- This parser supports a subset of Markdown and does not yet handle recursive inline Markdown elements
 
-• Regarding block_to_html.py, a more functional style was adopted in parts of the codebase for brevity. However, I realised adopting this style increases cognitive load, making maintainability more difficult.
-
-Known limitations:
-
-•	This parser supports a subset of Markdown and does not yet handle recursive inline markdown elements.
-
-Future improvements:
-•	Will include features to parse recursive inline markdown
-•	Will continue updating the extensive test suite as the project expands.
+## Future Improvements
+- Add support for recursive inline Markdown
+- Continue expanding test coverage as the parser develops
 
