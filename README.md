@@ -19,6 +19,7 @@ Demonstration of the static site:
 https://ajrollerson.github.io/staticsitegenerator/
 
 ## Quick Start
+The following commands assume a Bash/WSL environment.
 ### Clone the Repository
 ```bash
 git clone https://github.com/ajrollerson/staticsitegenerator.git
